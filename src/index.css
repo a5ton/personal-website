@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure text with gradient background has proper line height and padding */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  padding-bottom: 0.2em;
+}
+
+/* Specific fix for section headers with gradient text */
+.text-4xl, .text-5xl {
+  line-height: 1.3;
+  padding-bottom: 0.25em;
+  display: inline-block;
+}
