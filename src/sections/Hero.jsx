@@ -30,9 +30,56 @@ function Hero() {
       id="hero" 
       className="relative flex flex-col items-center justify-center min-h-screen py-20 text-center overflow-hidden"
     >
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5 dark:opacity-10"></div>
+      {/* Dynamic gradient background with animation */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        {/* Animated gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/70 via-purple-50/50 to-pink-50/70 dark:from-gray-900/90 dark:via-gray-800/90 dark:to-gray-900/90">
+          <div className="absolute inset-0 bg-grid-pattern opacity-10 dark:opacity-5"></div>
+        </div>
+        
+        {/* Animated blobs */}
+        <motion.div 
+          className="absolute -top-64 -left-64 w-[600px] h-[600px] bg-blue-300/40 dark:bg-blue-600/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"
+          animate={{
+            scale: [1, 1.1, 1],
+            x: [0, 40, 0],
+            y: [0, 30, 0],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            repeatType: "reverse",
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div 
+          className="absolute -bottom-48 left-1/4 w-[500px] h-[500px] bg-purple-300/40 dark:bg-purple-600/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"
+          animate={{
+            scale: [1, 1.1, 1],
+            x: [0, -30, 0],
+            y: [0, -40, 0],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            repeatType: "reverse",
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div 
+          className="absolute top-1/2 right-1/4 w-[550px] h-[550px] bg-pink-200/40 dark:bg-pink-600/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob"
+          animate={{
+            scale: [1, 1.05, 1],
+            x: [0, 20, 0],
+            y: [0, -20, 0],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            repeatType: "reverse",
+            ease: "easeInOut"
+          }}
+        />
       </div>
       
       <div className="container px-4 mx-auto">
@@ -107,7 +154,7 @@ function Hero() {
           
           <div className="flex flex-wrap justify-center gap-6 mb-12">
             <motion.a 
-              href="https://github.com/astonong" 
+              href="https://github.com/a5ton" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
@@ -117,7 +164,7 @@ function Hero() {
               <FiGithub className="w-6 h-6" />
             </motion.a>
             <motion.a 
-              href="https://linkedin.com/in/astonong" 
+              href="https://linkedin.com/in/aston-ong-3a9834364/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
@@ -127,7 +174,7 @@ function Hero() {
               <FiLinkedin className="w-6 h-6" />
             </motion.a>
             <motion.a 
-              href="https://twitter.com/astonong" 
+              href="https://x.com/a5ton14" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-gray-600 hover:text-blue-400 dark:text-gray-400 dark:hover:text-blue-300 transition-colors"
@@ -137,31 +184,6 @@ function Hero() {
               <span className="font-bold text-2xl flex items-center justify-center h-6">𝕏</span>
             </motion.a>
           </div>
-          
-          {/* Stats */}
-          <motion.div 
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-12 p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 0.7 }}
-          >
-            <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">5+</div>
-              <div className="text-gray-600 dark:text-gray-400">Years Experience</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">50+</div>
-              <div className="text-gray-600 dark:text-gray-400">Projects Completed</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">30+</div>
-              <div className="text-gray-600 dark:text-gray-400">Happy Clients</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">10+</div>
-              <div className="text-gray-600 dark:text-gray-400">Awards Won</div>
-            </div>
-          </motion.div>
         </motion.div>
       </div>
     </section>

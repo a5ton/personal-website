@@ -94,8 +94,8 @@ function Navbar({ darkMode, setDarkMode }) {
                     href={link.href}
                     onClick={(e) => scrollToSection(e, link.href)}
                     className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors relative ${
-                      link.href === '#hero' && !scrolled 
-                        ? 'text-white' 
+                      `#${activeSection}` === link.href 
+                        ? 'text-blue-600 dark:text-blue-400' 
                         : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
                     } ${
                       `#${activeSection}` === link.href ? 'after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-4 after:h-0.5 after:bg-blue-600 dark:after:bg-blue-400' : ''

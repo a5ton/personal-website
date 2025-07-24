@@ -1,30 +1,45 @@
 // Edit this file to add your projects
 export const projects = [
   {
-    title: 'Project One',
-    description: 'A brief description of the first standout project. Explain what it is and why it matters.',
-    image: '/project1.jpg', // Place image in public folder
-    tech: ['React', 'Tailwind CSS'],
-    link: '#',
+    title: 'Motorverse',
+    image: '/project-motorverse.jpg',
+    images: [
+      '/project-motorverse-1.jpg',
+      '/project-motorverse-2.jpg',
+      '/project-motorverse-3.jpg'
+    ],
+    tech: ['Windsurf', 'Three.js', 'React', 'WebGL'],
+    link: 'https://www.motorverse.com/',
+    github: '#',
     date: 'March 2024',
-    categories: ['web']
+    categories: ['web', '3d', 'frontend'],
+    description: 'An immersive 3D experience platform built with Windsurf. This project showcases advanced 3D rendering capabilities and interactive features for an engaging user experience.'
   },
   {
-    title: 'Project Two',
-    description: 'A brief description of the second standout project. Highlight your role and impact.',
-    image: '/project2.jpg',
-    tech: ['Node.js', 'Express'],
+    title: 'Fabien App',
+    image: '/project-fabien.jpg',
+    images: [
+      '/project-fabien-1.jpg',
+      '/project-fabien-2.jpg'
+    ],
+    tech: ['Bubble.io', 'No-code Development', 'Web App'],
     link: '#',
-    date: 'January 2024',
-    categories: ['backend']
+    date: 'November 2023',
+    categories: ['web', 'frontend', 'bubble'],
+    description: 'A comprehensive web application built with Bubble.io that streamlines business processes and enhances user engagement through an intuitive interface.'
   },
   {
-    title: 'Project Three',
-    description: 'A brief description of the third project showcasing additional skills and experience.',
-    image: '/project3.jpg',
-    tech: ['Python', 'Django', 'React'],
+    title: 'Factory Driver Program',
+    image: '/project-factory.jpg',
+    images: [
+      '/project-factory-1.jpg',
+      '/project-factory-2.jpg',
+      '/project-factory-3.jpg'
+    ],
+    tech: ['Bubble.io', 'Automation', 'No-code Development'],
     link: '#',
-    date: 'May 2024',
-    categories: ['web', 'fullstack']
+    date: 'November 2023',
+    categories: ['automation', 'bubble', 'web'],
+    description: 'An automation solution developed with Bubble.io to optimize factory operations and improve workflow efficiency through intelligent process automation.'
   },
 ];

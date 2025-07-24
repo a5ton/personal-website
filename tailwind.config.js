@@ -11,7 +11,7 @@ module.exports = {
         accent: '#6366f1', // Indigo-500
       },
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+        sans: ['Poppins', 'ui-sans-serif', 'system-ui'],
       },
     },
   },

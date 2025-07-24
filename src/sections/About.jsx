@@ -51,11 +51,6 @@ function About() {
           <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-6 md:mb-8 leading-relaxed">
             I am a multi-disciplinary creative professional who translates ideas into engaging digital experiences. My work combines design, development, and creative strategy across web, apps, and branding to build products that are both beautiful and functional.
           </p>
-          <div className="flex flex-row items-center justify-center gap-4 text-sm md:text-base text-gray-500 dark:text-gray-400 font-medium">
-            <span className="whitespace-nowrap">8+ YEARS EXPERIENCE</span>
-            <span className="text-gray-400 dark:text-gray-500">|</span>
-            <span className="whitespace-nowrap">50+ PROJECTS COMPLETED</span>
-          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-20 px-0 md:px-2">

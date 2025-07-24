@@ -4,19 +4,19 @@ import { motion } from 'framer-motion';
 
 const socialLinks = [
   {
-    href: 'https://github.com/astonong',
+    href: 'https://github.com/a5ton',
     icon: <FiGithub className="w-6 h-6" />,
     label: 'GitHub',
     hoverColor: 'hover:text-gray-900 dark:hover:text-white'
   },
   {
-    href: 'https://linkedin.com/in/astonong',
+    href: 'https://www.linkedin.com/in/aston-ong-3a9834364/',
     icon: <FiLinkedin className="w-6 h-6" />,
     label: 'LinkedIn',
     hoverColor: 'hover:text-blue-600 dark:hover:text-blue-400'
   },
   {
-    href: 'https://twitter.com/astonong',
+    href: 'https://x.com/a5ton14',
     icon: <span className="font-bold text-2xl flex items-center justify-center h-6">𝕏</span>,
     label: 'X',
     hoverColor: 'hover:text-blue-400 dark:hover:text-blue-300'
@@ -26,29 +26,11 @@ const socialLinks = [
 const contactInfo = [
   {
     icon: <FiMapPin className="w-5 h-5" />,
-    text: 'San Francisco, CA',
+    text: 'Hertfordshire, UK',
     color: 'text-blue-500',
     bg: 'bg-transparent border-2 border-blue-100 dark:border-blue-900/30',
     hover: 'hover:bg-blue-50/30 dark:hover:bg-blue-900/10',
     iconBg: 'bg-blue-100/30 dark:bg-blue-900/10'
-  },
-  {
-    icon: <FiPhone className="w-5 h-5" />,
-    text: '+1 (555) 123-4567',
-    color: 'text-green-500',
-    bg: 'bg-transparent border-2 border-green-100 dark:border-green-900/30',
-    hover: 'hover:bg-green-50/30 dark:hover:bg-green-900/10',
-    link: 'tel:+15551234567',
-    iconBg: 'bg-green-100/30 dark:bg-green-900/10'
-  },
-  {
-    icon: <FiMail className="w-5 h-5" />,
-    text: 'hello@astonong.com',
-    color: 'text-purple-500',
-    bg: 'bg-transparent border-2 border-purple-100 dark:border-purple-900/30',
-    hover: 'hover:bg-purple-50/30 dark:hover:bg-purple-900/10',
-    link: 'mailto:hello@astonong.com',
-    iconBg: 'bg-purple-100/30 dark:bg-purple-900/10'
   }
 ];
 
@@ -105,9 +87,43 @@ function Contact() {
 
   return (
     <section id="contact" className="relative py-24 overflow-hidden">
-      {/* Background elements - matching Projects section */}
-      <div className="absolute top-0 left-0 w-full h-full -z-10 opacity-5 dark:opacity-10">
-        <div className="absolute inset-0 bg-grid-pattern"></div>
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        {/* Gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/60 via-purple-50/40 to-pink-50/60 dark:from-gray-900/95 dark:via-gray-800/95 dark:to-gray-900/95">
+          <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] dark:opacity-[0.02]"></div>
+        </div>
+        
+        {/* Animated elements */}
+        <div className="absolute inset-0">
+          <motion.div 
+            className="absolute top-1/4 -left-20 w-96 h-96 bg-blue-200/20 dark:bg-blue-600/10 rounded-full mix-blend-multiply filter blur-3xl"
+            animate={{
+              scale: [1, 1.1, 1],
+              x: [0, 30, 0],
+              y: [0, -20, 0],
+            }}
+            transition={{
+              duration: 15,
+              repeat: Infinity,
+              repeatType: "reverse",
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div 
+            className="absolute bottom-1/4 -right-20 w-80 h-80 bg-purple-200/20 dark:bg-purple-600/10 rounded-full mix-blend-multiply filter blur-3xl"
+            animate={{
+              scale: [1, 1.1, 1],
+              x: [0, -20, 0],
+              y: [0, 20, 0],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              repeatType: "reverse",
+              ease: "easeInOut"
+            }}
+          />
+        </div>
       </div>
       <div className="absolute inset-0 -z-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"></div>
       
@@ -135,12 +151,15 @@ function Contact() {
             viewport={{ once: true, margin: "-100px 0px -100px 0px" }}
             transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
-              Contact Information
-            </h3>
-            <p className="text-gray-600 dark:text-gray-400">
-              I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
-            </p>
+            <div className="space-y-6">
+              <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
+                Based in the UK, I work with clients worldwide to create impactful digital experiences.
+              </p>
+              <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
+                I'm currently available for freelance work and open to discussing full-time opportunities. 
+                Let's collaborate to bring your ideas to life!
+              </p>
+            </div> 
             
             <div className="space-y-4">
               {contactInfo.map((item, index) => (
