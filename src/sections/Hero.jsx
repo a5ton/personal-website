@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { FiGithub, FiLinkedin, FiTwitter } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiTwitter, FiZap } from 'react-icons/fi';
 
 function Hero() {
   const [currentText, setCurrentText] = useState('');
@@ -66,20 +66,6 @@ function Hero() {
             ease: "easeInOut"
           }}
         />
-        <motion.div 
-          className="absolute top-1/2 right-1/4 w-[550px] h-[550px] bg-pink-200/40 dark:bg-pink-600/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob"
-          animate={{
-            scale: [1, 1.05, 1],
-            x: [0, 20, 0],
-            y: [0, -20, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "easeInOut"
-          }}
-        />
       </div>
       
       <div className="container px-4 mx-auto">
@@ -89,21 +75,9 @@ function Hero() {
           transition={{ duration: 0.7 }}
           className="max-w-4xl mx-auto"
         >
-          <motion.div 
-            className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-r from-blue-400 to-purple-500 p-0.5"
-            animate={{
-              scale: [1, 1.05, 1],
-              rotate: [0, 5, -5, 0],
-            }}
-            transition={{
-              duration: 8,
-              ease: "easeInOut",
-              repeat: Infinity,
-              repeatType: "reverse"
-            }}
-          >
-            <div className="w-full h-full bg-white dark:bg-gray-900 rounded-full"></div>
-          </motion.div>
+          <div className="w-24 h-24 mx-auto mb-6 flex items-center justify-center bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 rounded-full">
+            <FiZap className="w-12 h-12 text-white" />
+          </div>
           
           <motion.h1
             className="text-5xl sm:text-6xl md:text-7xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400"

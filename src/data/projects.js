@@ -10,7 +10,6 @@ export const projects = [
     ],
     tech: ['Three.js', 'React', 'Web3.js', 'NFT Integration', 'Responsive Design', 'TypeScript', 'WebGL', 'Blockchain', 'WalletConnect'],
     link: 'https://www.motorverse.com/',
-    github: '#',
     date: 'March 2025',
     categories: ['web', '3d', 'frontend'],
     description: 'I worked on the Motorverse Garage frontend — a real-time 3D browser experience where users connect their wallets to view and interact with their NFT cars. Our team implemented Three.js to create a garage that supports multi-car rendering and dynamic metadata displays, including ownership history and traits pulled directly from the blockchain. The platform integrates wallet authentication and NFT APIs, offering users a seamless way to showcase and explore their digital vehicle collections. Designed with exceptional responsiveness across devices, the garage plays a key role in bringing on-chain assets to life in an interactive, visually rich environment.'
