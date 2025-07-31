@@ -27,13 +27,21 @@ function ProjectModal({ project, isOpen, onClose }) {
     }
   };
 
+  // Prevent scroll on mount
+  React.useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
+
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm cursor-pointer"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm cursor-pointer overflow-hidden"
       onClick={handleBackdropClick}
     >
       <div 
-        className="relative bg-white dark:bg-gray-900 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto cursor-auto"
+        className="relative bg-white dark:bg-gray-900 rounded-xl max-w-6xl w-full max-h-[90vh] overflow-y-auto cursor-auto scrollbar-hide"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
@@ -46,13 +54,13 @@ function ProjectModal({ project, isOpen, onClose }) {
         </button>
 
         {/* Project images */}
-        <div className="relative h-80 md:h-96 bg-gray-100 dark:bg-gray-800">
+        <div className="relative w-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
           {project.images && project.images.length > 0 && (
             <>
               <img
                 src={project.images[currentImageIndex]}
                 alt={`${project.title} screenshot ${currentImageIndex + 1}`}
-                className="w-full h-full object-contain"
+                className="w-full h-auto max-h-[70vh] object-contain"
               />
               {project.images.length > 1 && (
                 <>
@@ -227,19 +235,7 @@ function Projects() {
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end p-6">
                     <div className="space-x-3">
-                      {project.github && (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/80 dark:bg-gray-800/90 text-gray-800 dark:text-gray-200 hover:bg-white dark:hover:bg-gray-700 transition-all duration-200 hover:scale-110 shadow-md dark:shadow-gray-800/30"
-                          onClick={(e) => e.stopPropagation()}
-                          aria-label="View on GitHub"
-                        >
-                          <FiGithub className="w-5 h-5" />
-                        </a>
-                      )}
-                      {project.title === 'Motorverse' && project.link && (
+                      {(project.title === 'Motorverse' || project.title === 'Factory Driver Program') && project.link && (
                         <a
                           href={project.link}
                           target="_blank"
@@ -255,32 +251,34 @@ function Projects() {
                   </div>
                 </div>
                 
-                <div className="p-6 flex-1 flex flex-col gap-3">
-                  <div className="flex-1 space-y-2">
-                    <div className="flex justify-between items-start">
-                      <h3 className="text-xl font-bold text-gray-800 dark:text-white">
-                        {project.title}
-                      </h3>
-                      {project.date && (
-                        <span className="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded whitespace-nowrap">
-                          {project.date}
-                        </span>
+                <div className="p-6 flex-1 flex flex-col">
+                  <div className="flex-1">
+                    <div className="flex flex-col gap-2">
+                      <div className="flex justify-between items-start">
+                        <h3 className="text-xl font-bold text-gray-800 dark:text-white">
+                          {project.title}
+                        </h3>
+                        {project.date && (
+                          <span className="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded whitespace-nowrap">
+                            {project.date}
+                          </span>
+                        )}
+                      </div>
+                      
+                      {project.tech && project.tech.length > 0 && (
+                        <div className="flex flex-wrap gap-2 pt-3 border-t border-gray-100 dark:border-gray-700">
+                          {project.tech.map((tech) => (
+                            <span 
+                              key={tech}
+                              className="text-xs px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-medium"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
                       )}
                     </div>
                   </div>
-                  
-                  {project.tech && project.tech.length > 0 && (
-                    <div className="flex flex-wrap gap-2 pt-4 border-t border-gray-100 dark:border-gray-700">
-                      {project.tech.map((tech) => (
-                        <span 
-                          key={tech}
-                          className="text-xs px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-medium"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  )}
                 </div>
               </motion.div>
             ))}

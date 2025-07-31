@@ -139,7 +139,7 @@ function Contact() {
             Get In Touch
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400">
-            Have a project in mind or want to chat? Feel free to reach out. I'm always open to discussing new opportunities.
+            Have a project in mind? Feel free to reach out. I'm always open to discussing new opportunities.
           </p>
         </motion.div>
 
