@@ -2,11 +2,11 @@
 export const projects = [
   {
     title: 'Motorverse',
-    image: '/images/Motorverse screenshot 1.png',
+    image: `${import.meta.env.BASE_URL}images/Motorverse screenshot 1.png`,
     images: [
-      '/images/Motorverse screenshot 1.png',
-      '/images/Motorverse screenshot 2.png',
-      '/images/Motorverse screenshot 3.png'
+      `${import.meta.env.BASE_URL}images/Motorverse screenshot 1.png`,
+      `${import.meta.env.BASE_URL}images/Motorverse screenshot 2.png`,
+      `${import.meta.env.BASE_URL}images/Motorverse screenshot 3.png`
     ],
     tech: ['Three.js', 'React', 'Web3.js', 'NFT Integration', 'Responsive Design', 'TypeScript', 'WebGL', 'Blockchain', 'WalletConnect'],
     link: 'https://www.motorverse.com/',
