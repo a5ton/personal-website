@@ -28,7 +28,7 @@ function Hero() {
   return (
     <section 
       id="hero" 
-      className="relative flex flex-col items-center justify-center min-h-screen py-20 text-center overflow-hidden"
+      className="relative flex flex-col items-center justify-center min-h-[90vh] md:min-h-screen pt-20 pb-12 md:py-20 text-center overflow-hidden"
     >
       {/* Dynamic gradient background with animation */}
       <div className="absolute inset-0 -z-10 overflow-hidden">

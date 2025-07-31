@@ -42,6 +42,10 @@ function ProjectModal({ project, isOpen, onClose }) {
     >
       <div 
         className="relative bg-white dark:bg-gray-900 rounded-xl max-w-6xl w-full max-h-[90vh] overflow-y-auto cursor-auto scrollbar-hide"
+        style={{
+          scrollbarWidth: 'none', /* Firefox */
+          msOverflowStyle: 'none', /* IE and Edge */
+        }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
@@ -173,7 +177,7 @@ function Projects() {
   const filteredProjects = projects;
 
   return (
-    <section id="projects" className="relative py-24 overflow-hidden">
+    <section id="projects" className="relative pt-12 pb-16 md:py-24 overflow-hidden">
       {/* Project Modal */}
       <AnimatePresence>
         {isModalOpen && selectedProject && (
