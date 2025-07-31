@@ -2,11 +2,11 @@
 export const projects = [
   {
     title: 'Motorverse',
-    image: '/images/Motorverse screenshot 1.png',
+    image: `${import.meta.env.BASE_URL}images/Motorverse screenshot 1.png`,
     images: [
-      '/images/Motorverse screenshot 1.png',
-      '/images/Motorverse screenshot 2.png',
-      '/images/Motorverse screenshot 3.png'
+      `${import.meta.env.BASE_URL}images/Motorverse screenshot 1.png`,
+      `${import.meta.env.BASE_URL}images/Motorverse screenshot 2.png`,
+      `${import.meta.env.BASE_URL}images/Motorverse screenshot 3.png`
     ],
     tech: ['Three.js', 'React', 'Web3.js', 'NFT Integration', 'Responsive Design', 'TypeScript', 'WebGL', 'Blockchain', 'WalletConnect'],
     link: 'https://www.motorverse.com/',
@@ -16,11 +16,11 @@ export const projects = [
   },
   {
     title: 'Factory Driver Program',
-    image: '/images/Factory Driver Program image 1.png',
+    image: `${import.meta.env.BASE_URL}images/Factory Driver Program image 1.png`,
     images: [
-      '/images/Factory Driver Program image 1.png',
-      '/images/Factory Driver Program image 2.png',
-      '/images/Factory Driver Program image 3.png'
+      `${import.meta.env.BASE_URL}images/Factory Driver Program image 1.png`,
+      `${import.meta.env.BASE_URL}images/Factory Driver Program image 2.png`,
+      `${import.meta.env.BASE_URL}images/Factory Driver Program image 3.png`
     ],
     tech: ['Bubble.io', 'No-code Development', 'AI Integration', 'User Management', 'Feedback Analysis', 'Secure Authentication'],
     link: 'https://factorydriver.straight4.com/',
@@ -30,11 +30,11 @@ export const projects = [
   },
   {
     title: 'Fabien App',
-    image: '/images/Fabien App image 1.png',
+    image: `${import.meta.env.BASE_URL}images/Fabien App image 1.png`,
     images: [
-      '/images/Fabien App image 1.png',
-      '/images/Fabien App image 2.png',
-      '/images/Fabien App image 3.png'
+      `${import.meta.env.BASE_URL}images/Fabien App image 1.png`,
+      `${import.meta.env.BASE_URL}images/Fabien App image 2.png`,
+      `${import.meta.env.BASE_URL}images/Fabien App image 3.png`
     ],
     tech: ['Bubble.io', 'AI Integration', 'Voice-to-Text', 'PWA', 'No-code', 'Responsive Design'],
     link: '#',
@@ -44,11 +44,11 @@ export const projects = [
   },
   {
     title: 'Hopper & Wheatley Restorations',
-    image: '/images/Hopper & Wheatley image 1.png',
+    image: `${import.meta.env.BASE_URL}images/Hopper & Wheatley image 1.png`,
     images: [
-      '/images/Hopper & Wheatley image 1.png',
-      '/images/Hopper & Wheatley image 2.png',
-      '/images/Hopper & Wheatley image 3.png'
+      `${import.meta.env.BASE_URL}images/Hopper & Wheatley image 1.png`,
+      `${import.meta.env.BASE_URL}images/Hopper & Wheatley image 2.png`,
+      `${import.meta.env.BASE_URL}images/Hopper & Wheatley image 3.png`
     ],
     tech: ['Webflow', 'Responsive Design', 'CMS', 'SEO', 'UI/UX'],
     link: 'https://www.hopperandwheatleyrestorations.co.uk/',
