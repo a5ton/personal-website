@@ -125,19 +125,15 @@ function Navbar({ darkMode, setDarkMode }) {
               </motion.button>
             </div>
 
-            {/* Mobile menu button */}
+            {/* Mobile menu button - Always shows burger icon */}
             <div className="md:hidden flex items-center">
               <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                onClick={() => setMobileMenuOpen(true)}
                 className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none"
-                aria-expanded="false"
+                aria-expanded={mobileMenuOpen}
+                aria-label="Open main menu"
               >
-                <span className="sr-only">Open main menu</span>
-                {mobileMenuOpen ? (
-                  <FaTimes className="block h-6 w-6" />
-                ) : (
-                  <FaBars className="block h-6 w-6" />
-                )}
+                <FaBars className="block h-6 w-6" />
               </button>
             </div>
           </div>
@@ -153,7 +149,15 @@ function Navbar({ darkMode, setDarkMode }) {
               transition={{ duration: 0.2 }}
               className="md:hidden fixed top-0 left-0 w-full min-h-screen z-[100] bg-white dark:bg-gray-900 bg-opacity-95 dark:bg-opacity-95 shadow-lg overflow-y-auto"
             >
-              <div className="px-4 pt-24 pb-8 space-y-1">
+              <div className="relative px-4 pt-16 pb-8 space-y-1">
+                {/* Close button in top-right corner */}
+                <button
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="absolute top-4 right-4 p-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none"
+                  aria-label="Close menu"
+                >
+                  <FaTimes className="h-6 w-6" />
+                </button>
                 {navLinks.map((link) => (
                   <a
                     key={link.href}
