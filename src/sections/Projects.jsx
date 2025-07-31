@@ -235,7 +235,7 @@ function Projects() {
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end p-6">
                     <div className="space-x-3">
-                      {(project.title === 'Motorverse' || project.title === 'Factory Driver Program') && project.link && (
+                      {(project.title === 'Motorverse' || project.title === 'Factory Driver Program' || project.title === 'Hopper & Wheatley Restorations') && project.link && (
                         <a
                           href={project.link}
                           target="_blank"

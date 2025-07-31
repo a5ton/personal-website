@@ -51,7 +51,7 @@ export const projects = [
       '/images/Hopper & Wheatley image 3.png'
     ],
     tech: ['Webflow', 'Responsive Design', 'CMS', 'SEO', 'UI/UX'],
-    link: '#',
+    link: 'https://www.hopperandwheatleyrestorations.co.uk/',
     date: 'October 2024',
     categories: ['web', 'frontend', 'design'],
     description: 'Hopper & Wheatley Restorations is a bespoke Webflow site for a UK-based classic car restoration business. I worked on the frontend implementation, helping bring the clean, editorial layout and responsive design to life. The site features SEO-friendly structure, dynamic galleries, and an intuitive CMS, all tailored to showcase the workshop\'s craftsmanship and attention to detail.'
