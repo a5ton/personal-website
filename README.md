@@ -28,4 +28,4 @@ A modern, responsive personal website for Aston Ong, built with React, Vite, and
 
 Built with ❤️ by Aston Ong
 
-> Last updated: July 31, 2025 - Triggering GitHub Actions workflow
+> Last updated: July 31, 2025 - Fixed GitHub Pages deployment
