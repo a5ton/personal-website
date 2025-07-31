@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { FiGithub, FiLinkedin, FiTwitter, FiZap } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiTwitter, FiCode } from 'react-icons/fi';
 
 function Hero() {
   const [currentText, setCurrentText] = useState('');
@@ -76,7 +76,7 @@ function Hero() {
           className="max-w-4xl mx-auto"
         >
           <div className="w-24 h-24 mx-auto mb-6 flex items-center justify-center bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 rounded-full">
-            <FiZap className="w-12 h-12 text-white" />
+            <FiCode className="w-12 h-12 text-white" />
           </div>
           
           <motion.h1
