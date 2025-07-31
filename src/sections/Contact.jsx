@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FiLinkedin, FiGithub, FiMail, FiMapPin, FiPhone, FiSend, FiTwitter } from 'react-icons/fi';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 
 const socialLinks = [
   {
@@ -52,25 +53,42 @@ function Contact() {
     }));
   };
 
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     
     try {
-      // Replace with your form submission logic
-      console.log('Form submitted:', formData);
+      // Send email using EmailJS
+      const result = await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
       
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      setSubmitStatus({
-        success: true,
-        message: 'Your message has been sent! I\'ll get back to you soon.'
-      });
-      
-      // Reset form
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      if (result.status === 200) {
+        setSubmitStatus({
+          success: true,
+          message: 'Your message has been sent! I\'ll get back to you soon.'
+        });
+        
+        // Reset form
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        throw new Error('Failed to send email');
+      }
     } catch (error) {
+      console.error('Error sending email:', error);
       setSubmitStatus({
         success: false,
         message: 'Something went wrong. Please try again later.'
