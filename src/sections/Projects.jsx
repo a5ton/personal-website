@@ -36,16 +36,25 @@ function ProjectModal({ project, isOpen, onClose }) {
   }, []);
 
   return (
-    <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm cursor-pointer overflow-hidden"
+    <motion.div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 cursor-pointer overflow-hidden"
       onClick={handleBackdropClick}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
     >
-      <div 
-        className="relative bg-white dark:bg-gray-900 rounded-xl max-w-6xl w-full max-h-[90vh] overflow-y-auto cursor-auto scrollbar-hide"
+      <motion.div 
+        className="relative bg-white dark:bg-gray-900 rounded-xl max-w-6xl w-full max-h-[75vh] md:max-h-[85vh] overflow-y-auto cursor-auto scrollbar-hide"
         style={{
-          scrollbarWidth: 'none', /* Firefox */
-          msOverflowStyle: 'none', /* IE and Edge */
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+          WebkitOverflowScrolling: 'touch',
         }}
+        initial={{ scale: 0.98, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.98, opacity: 0 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
@@ -65,6 +74,9 @@ function ProjectModal({ project, isOpen, onClose }) {
                 src={project.images[currentImageIndex]}
                 alt={`${project.title} screenshot ${currentImageIndex + 1}`}
                 className="w-full h-auto max-h-[70vh] object-contain"
+                loading="lazy"
+                decoding="async"
+                style={{ contentVisibility: 'auto' }}
               />
               {project.images.length > 1 && (
                 <>
@@ -153,8 +165,8 @@ function ProjectModal({ project, isOpen, onClose }) {
             </div>
           )}
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 
@@ -189,14 +201,10 @@ function Projects() {
         )}
       </AnimatePresence>
       {/* Dynamic background with gradient and pattern */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-purple-50/30 to-pink-50/50 dark:from-gray-900/95 dark:via-gray-800/95 dark:to-gray-900/95">
-          <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] dark:opacity-[0.02]"></div>
-        </div>
-        {/* Subtle animated dots */}
-        <div className="absolute inset-0 opacity-10 dark:opacity-5">
-          <div className="absolute inset-0 bg-[radial-gradient(#0000001a_1px,transparent_1px)] [background-size:24px_24px]"></div>
-        </div>
+      {/* Simplified background for better performance */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-blue-50/50 via-purple-50/30 to-pink-50/50 dark:from-gray-900/95 dark:via-gray-800/95 dark:to-gray-900/95">
+        {/* Remove heavy background patterns on mobile */}
+        <div className="hidden md:block absolute inset-0 bg-grid-pattern opacity-[0.03] dark:opacity-[0.02]"></div>
       </div>
       
       <div className="container px-4 mx-auto">
@@ -220,12 +228,15 @@ function Projects() {
             {filteredProjects.map((project, idx) => (
               <motion.div
                 key={project.title}
-                className="group relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col h-full cursor-pointer"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 30 }}
-                transition={{ duration: 0.4, delay: idx * 0.1 }}
-                layout
+                className="group relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-200 flex flex-col h-full cursor-pointer"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ 
+                  duration: 0.3, 
+                  delay: Math.min(idx * 0.05, 0.3),
+                  ease: "easeOut"
+                }}
                 onClick={() => openModal(project)}
               >
                 <div className="relative overflow-hidden">
@@ -233,11 +244,13 @@ function Projects() {
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="w-full h-full object-cover"
                       loading="lazy"
+                      decoding="async"
+                      style={{ contentVisibility: 'auto' }}
                     />
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end p-6">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 md:group-hover:opacity-100 transition-opacity duration-200 flex items-end p-6">
                     <div className="space-x-3">
                       {(project.title === 'Motorverse' || project.title === 'Factory Driver Program' || project.title === 'Hopper & Wheatley Restorations') && project.link && (
                         <a
@@ -258,14 +271,16 @@ function Projects() {
                 <div className="p-6 flex-1 flex flex-col">
                   <div className="flex-1">
                     <div className="flex flex-col gap-2">
-                      <div className="flex justify-between items-start">
+                      <div className="space-y-2">
                         <h3 className="text-xl font-bold text-gray-800 dark:text-white">
                           {project.title}
                         </h3>
                         {project.date && (
-                          <span className="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded whitespace-nowrap">
-                            {project.date}
-                          </span>
+                          <div className="w-fit">
+                            <span className="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-3 py-1.5 rounded whitespace-nowrap">
+                              {project.date}
+                            </span>
+                          </div>
                         )}
                       </div>
                       

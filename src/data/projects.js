@@ -8,7 +8,7 @@ export const projects = [
       'images/Motorverse screenshot 2.png',
       'images/Motorverse screenshot 3.png'
     ],
-    tech: ['Three.js', 'React', 'Web3.js', 'NFT Integration', 'Responsive Design', 'TypeScript', 'WebGL', 'Blockchain', 'WalletConnect'],
+    tech: ['Next.js', 'Three.js', 'React', 'Web3.js', 'NFT Integration', 'Responsive Design', 'TypeScript', 'WebGL', 'Blockchain', 'WalletConnect'],
     link: 'https://www.motorverse.com/',
     date: 'March 2025',
     categories: ['web', '3d', 'frontend'],

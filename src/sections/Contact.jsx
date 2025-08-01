@@ -104,7 +104,7 @@ function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-24 overflow-hidden">
+    <section id="contact" className="relative pt-24 pb-4 md:pb-12 overflow-hidden">
       <div className="absolute inset-0 -z-10 overflow-hidden">
         {/* Gradient background */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50/60 via-purple-50/40 to-pink-50/60 dark:from-gray-900/95 dark:via-gray-800/95 dark:to-gray-900/95">

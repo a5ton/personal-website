@@ -7,19 +7,19 @@ const services = [
     title: 'Web',
     icon: <FiCode className="w-8 h-8 mb-4 text-blue-400" />,
     description: 'I build beautiful, responsive, and high-performing websites that deliver results.',
-    tags: ['Web Design', 'Web Development', 'WordPress']
+    tags: ['Web Design', 'Web Development', 'WordPress', 'React', 'Next.js', 'Node.js', 'Tailwind CSS', 'Responsive Design']
   },
   {
     title: 'Design',
     icon: <FiLayout className="w-8 h-8 mb-4 text-purple-400" />,
     description: 'I create compelling brand identities and user experiences through thoughtful design and storytelling.',
-    tags: ['Branding', 'UI/UX', 'Illustration', 'Storytelling']
+    tags: ['Figma', 'UI/UX Design', 'Prototyping', 'User Research', 'Design Systems', 'Interaction Design', 'Motion Design', 'Brand Identity']
   },
   {
     title: 'Apps & Software',
     icon: <FiSmartphone className="w-8 h-8 mb-4 text-green-400" />,
     description: 'I design and develop scalable software solutions, from SaaS products to mobile apps, that solve real business challenges.',
-    tags: ['SaaS', 'Mobile Apps', 'Web Apps', 'Product Strategy']
+    tags: ['React Native', 'Progressive Web Apps', 'State Management', 'API Integration', 'Performance']
   }
 ];
 
