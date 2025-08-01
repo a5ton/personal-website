@@ -40,7 +40,7 @@ function ProjectModal({ project, isOpen, onClose }) {
       onClick={handleBackdropClick}
     >
       <div 
-        className="relative bg-white dark:bg-gray-900 rounded-xl max-w-6xl w-full max-h-[75vh] md:max-h-[85vh] overflow-y-auto cursor-auto"
+        className="relative bg-white dark:bg-gray-900 rounded-xl max-w-6xl w-full max-h-[90vh] overflow-y-auto cursor-auto"
         style={{
           scrollbarWidth: 'none',
           msOverflowStyle: 'none',
@@ -51,7 +51,7 @@ function ProjectModal({ project, isOpen, onClose }) {
         {/* Close button */}
         <button 
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white z-10"
+          className="absolute top-4 right-4 p-2 rounded-full bg-black/70 hover:bg-black/90 text-white z-10 shadow-lg transition-colors"
           aria-label="Close modal"
         >
           <FiX className="w-6 h-6" />
@@ -64,7 +64,7 @@ function ProjectModal({ project, isOpen, onClose }) {
               <img
                 src={project.images[currentImageIndex]}
                 alt={`${project.title} screenshot ${currentImageIndex + 1}`}
-                className="w-full h-auto max-h-[70vh] object-contain"
+                className="w-full h-auto max-h-[calc(90vh-200px)] object-contain"
                 loading="lazy"
                 decoding="async"
                 style={{ contentVisibility: 'auto' }}
