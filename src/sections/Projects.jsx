@@ -2,37 +2,48 @@ import React, { useState, useEffect } from 'react';
 import { projects } from '../data/projects';
 import { FiGithub, FiExternalLink, FiX, FiArrowLeft, FiArrowRight } from 'react-icons/fi';
 
+// Format date to be consistent (e.g., "Nov 2024")
+const formatDate = (dateString) => {
+  if (!dateString) return '';
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+};
+
 function ProjectModal({ project, isOpen, onClose }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   if (!isOpen) return null;
 
-  const nextImage = () => {
-    setCurrentImageIndex((prevIndex) => 
-      prevIndex === project.images.length - 1 ? 0 : prevIndex + 1
-    );
+  const nextImage = (e) => {
+    e.stopPropagation();
+    setCurrentImageIndex(prev => (prev + 1) % project.images.length);
   };
 
-  const prevImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? project.images.length - 1 : prevIndex - 1
-    );
+  const prevImage = (e) => {
+    e.stopPropagation();
+    setCurrentImageIndex(prev => (prev - 1 + project.images.length) % project.images.length);
   };
 
-  // Close modal when clicking outside content
+  // Close modal when clicking outside content or pressing Escape
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', handleEscape);
+    
+    return () => {
+      document.body.style.overflow = 'auto';
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [onClose]);
+
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
   };
-
-  // Prevent scroll on mount
-  React.useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, []);
 
   return (
     <div 
@@ -40,7 +51,7 @@ function ProjectModal({ project, isOpen, onClose }) {
       onClick={handleBackdropClick}
     >
       <div 
-        className="relative bg-white dark:bg-gray-900 rounded-xl max-w-6xl w-full max-h-[90vh] overflow-y-auto cursor-auto"
+        className="relative bg-white dark:bg-gray-900 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto cursor-auto"
         style={{
           scrollbarWidth: 'none',
           msOverflowStyle: 'none',
@@ -54,37 +65,50 @@ function ProjectModal({ project, isOpen, onClose }) {
           className="absolute top-4 right-4 p-2 rounded-full bg-black/70 hover:bg-black/90 text-white z-10 shadow-lg transition-colors"
           aria-label="Close modal"
         >
-          <FiX className="w-6 h-6" />
+          <FiX className="w-5 h-5" />
         </button>
 
         {/* Project images */}
-        <div className="relative w-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+        <div className="relative w-full bg-gray-100 dark:bg-gray-800 aspect-video overflow-hidden">
           {project.images && project.images.length > 0 && (
             <>
-              <img
-                src={project.images[currentImageIndex]}
-                alt={`${project.title} screenshot ${currentImageIndex + 1}`}
-                className="w-full h-auto max-h-[calc(90vh-200px)] object-contain"
-                loading="lazy"
-                decoding="async"
-                style={{ contentVisibility: 'auto' }}
-              />
+              <div className="relative w-full h-full">
+                <img
+                  src={project.images[currentImageIndex]}
+                  alt={`${project.title} screenshot ${currentImageIndex + 1}`}
+                  className="absolute inset-0 w-full h-full object-cover object-center"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
               {project.images.length > 1 && (
                 <>
                   <button 
-                    onClick={(e) => { e.stopPropagation(); prevImage(); }}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+                    onClick={prevImage}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors z-10"
                     aria-label="Previous image"
                   >
                     <FiArrowLeft className="w-5 h-5" />
                   </button>
                   <button 
-                    onClick={(e) => { e.stopPropagation(); nextImage(); }}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+                    onClick={nextImage}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors z-10"
                     aria-label="Next image"
                   >
                     <FiArrowRight className="w-5 h-5" />
                   </button>
+                  <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+                    {project.images.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentImageIndex(index)}
+                        className={`w-2 h-2 rounded-full transition-colors ${
+                          index === currentImageIndex ? 'bg-white' : 'bg-white/50'
+                        }`}
+                        aria-label={`Go to image ${index + 1}`}
+                      />
+                    ))}
+                  </div>
                 </>
               )}
             </>
@@ -93,15 +117,29 @@ function ProjectModal({ project, isOpen, onClose }) {
 
         <div className="p-6">
           <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-6">
-            <div>
+            <div className="flex-1">
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
                 {project.title}
               </h2>
-              {project.date && (
-                <p className="text-gray-500 dark:text-gray-400 text-sm">
-                  {project.date}
-                </p>
-              )}
+              <div className="flex items-center gap-3 mt-2">
+                <div className="bg-gray-100 dark:bg-gray-700 px-3 py-1.5 rounded flex items-center">
+                  <span className="text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                    {formatDate(project.date)}
+                  </span>
+                </div>
+                {project.link && project.link !== '#' && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/80 dark:bg-gray-800/90 text-gray-800 dark:text-gray-200 hover:bg-white dark:hover:bg-gray-700 transition-all duration-200 hover:scale-110 shadow-md dark:shadow-gray-800/30"
+                    onClick={(e) => e.stopPropagation()}
+                    aria-label="View live demo"
+                  >
+                    <FiExternalLink className="w-4 h-4" />
+                  </a>
+                )}
+              </div>
             </div>
             
             <div className="flex gap-3">
@@ -110,44 +148,32 @@ function ProjectModal({ project, isOpen, onClose }) {
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-sm"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <FiGithub className="w-5 h-5" />
+                  <FiGithub className="w-4 h-4" />
                   <span>GitHub</span>
-                </a>
-              )}
-              {project.title === 'Motorverse' && project.link && (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/80 dark:bg-gray-800/90 text-gray-800 dark:text-gray-200 hover:bg-white dark:hover:bg-gray-700 transition-all duration-200 hover:scale-110 shadow-md dark:shadow-gray-800/30"
-                  onClick={(e) => e.stopPropagation()}
-                  aria-label="View live demo"
-                >
-                  <FiExternalLink className="w-5 h-5" />
                 </a>
               )}
             </div>
           </div>
 
           {project.description && (
-            <div className="prose dark:prose-invert max-w-none">
+            <div className="prose dark:prose-invert max-w-none text-sm leading-relaxed">
               {project.description}
             </div>
           )}
 
           {project.tech && project.tech.length > 0 && (
             <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-800">
-              <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-3">
+              <h3 className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wider">
                 Technologies Used
               </h3>
               <div className="flex flex-wrap gap-2">
                 {project.tech.map((tech) => (
                   <span
                     key={tech}
-                    className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200"
+                    className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200"
                   >
                     {tech}
                   </span>
