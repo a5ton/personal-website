@@ -5,7 +5,18 @@ import { FiGithub, FiExternalLink, FiX, FiArrowLeft, FiArrowRight } from 'react-
 // Format date to be consistent (e.g., "Nov 2024")
 const formatDate = (dateString) => {
   if (!dateString) return '';
+  
+  // If the date is already in "Month YYYY" format, return it as is
+  if (/^[A-Za-z]+ \d{4}$/.test(dateString)) {
+    return dateString;
+  }
+  
+  // Otherwise, try to parse it as a date
   const date = new Date(dateString);
+  if (isNaN(date.getTime())) {
+    return dateString; // Return original string if it's not a valid date
+  }
+  
   return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
 };
 
