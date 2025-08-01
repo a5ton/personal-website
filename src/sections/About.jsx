@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { FiCode, FiLayout, FiSmartphone, FiTrendingUp, FiPenTool, FiMessageSquare } from 'react-icons/fi';
 
 const services = [
@@ -34,34 +33,26 @@ const coreStrengths = [
 
 function About() {
   return (
-    <section id="about" className="relative py-24 overflow-hidden bg-gray-50 dark:bg-gray-900">
-      <div className="absolute inset-0 -z-10 bg-grid-pattern opacity-5 dark:opacity-10"></div>
+    <section id="about" className="relative py-24 overflow-hidden">
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-blue-50/60 via-purple-50/40 to-pink-50/60 dark:from-gray-900/95 dark:via-gray-800/95 dark:to-gray-900/95">
+        <div className="absolute inset-0 bg-grid-pattern opacity-10 dark:opacity-[0.05]"></div>
+      </div>
 
       <div className="container mx-auto px-4">
-        <motion.div
-          className="mx-auto mb-12 md:mb-20 max-w-2xl md:max-w-3xl lg:max-w-4xl text-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-        >
+        <div className="mx-auto mb-12 md:mb-20 max-w-2xl md:max-w-3xl lg:max-w-4xl text-center">
           <h2 className="text-3xl xs:text-4xl md:text-5xl font-bold mb-4 md:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
             About Me
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-6 md:mb-8 leading-relaxed">
             I am a multi-disciplinary creative professional who translates ideas into engaging digital experiences. My work combines design, development, and creative strategy across web, apps, and branding to build products that are both beautiful and functional.
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-20 px-0 md:px-2">
-          {services.map((service, index) => (
-            <motion.div
+          {services.map((service) => (
+            <div
               key={service.title}
               className="bg-white dark:bg-gray-800/50 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700/50 h-full flex flex-col"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               {service.icon}
               <h3 className="text-2xl font-bold mb-3 text-gray-800 dark:text-white">{service.title}</h3>
@@ -73,17 +64,11 @@ function About() {
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        <motion.div
-          className="text-center px-2 md:px-4"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-        >
+        <div className="text-center px-2 md:px-4">
           <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-gray-800 dark:text-white">Core Strengths</h3>
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 max-w-4xl mx-auto">
             {coreStrengths.map(strength => (
@@ -93,7 +78,7 @@ function About() {
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
       </div>
     </section>

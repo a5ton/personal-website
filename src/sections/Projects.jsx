@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { projects } from '../data/projects';
-import { motion, AnimatePresence } from 'framer-motion';
 import { FiGithub, FiExternalLink, FiX, FiArrowLeft, FiArrowRight } from 'react-icons/fi';
 
 function ProjectModal({ project, isOpen, onClose }) {
@@ -36,25 +35,17 @@ function ProjectModal({ project, isOpen, onClose }) {
   }, []);
 
   return (
-    <motion.div 
+    <div 
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 cursor-pointer overflow-hidden"
       onClick={handleBackdropClick}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.2 }}
     >
-      <motion.div 
-        className="relative bg-white dark:bg-gray-900 rounded-xl max-w-6xl w-full max-h-[75vh] md:max-h-[85vh] overflow-y-auto cursor-auto scrollbar-hide"
+      <div 
+        className="relative bg-white dark:bg-gray-900 rounded-xl max-w-6xl w-full max-h-[75vh] md:max-h-[85vh] overflow-y-auto cursor-auto"
         style={{
           scrollbarWidth: 'none',
           msOverflowStyle: 'none',
           WebkitOverflowScrolling: 'touch',
         }}
-        initial={{ scale: 0.98, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.98, opacity: 0 }}
-        transition={{ duration: 0.2, ease: "easeOut" }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
@@ -165,8 +156,8 @@ function ProjectModal({ project, isOpen, onClose }) {
             </div>
           )}
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
 
@@ -191,117 +182,98 @@ function Projects() {
   return (
     <section id="projects" className="relative pt-12 pb-16 md:py-24 overflow-hidden">
       {/* Project Modal */}
-      <AnimatePresence>
-        {isModalOpen && selectedProject && (
-          <ProjectModal 
-            project={selectedProject} 
-            isOpen={isModalOpen} 
-            onClose={closeModal} 
-          />
-        )}
-      </AnimatePresence>
-      {/* Dynamic background with gradient and pattern */}
-      {/* Simplified background for better performance */}
+      {isModalOpen && selectedProject && (
+        <ProjectModal 
+          project={selectedProject} 
+          isOpen={isModalOpen} 
+          onClose={closeModal} 
+        />
+      )}
+      
+      {/* Background */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-br from-blue-50/50 via-purple-50/30 to-pink-50/50 dark:from-gray-900/95 dark:via-gray-800/95 dark:to-gray-900/95">
-        {/* Remove heavy background patterns on mobile */}
         <div className="hidden md:block absolute inset-0 bg-grid-pattern opacity-[0.03] dark:opacity-[0.02]"></div>
       </div>
       
       <div className="container px-4 mx-auto">
-        <motion.div
-          className="text-left mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-        >
+        <div className="text-left mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
-           Work
+            Work
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
             A collection of my professional work and projects. Each piece represents a unique challenge and learning opportunity.
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <AnimatePresence>
-            {filteredProjects.map((project, idx) => (
-              <motion.div
-                key={project.title}
-                className="group relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-200 flex flex-col h-full cursor-pointer"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ 
-                  duration: 0.3, 
-                  delay: Math.min(idx * 0.05, 0.3),
-                  ease: "easeOut"
-                }}
-                onClick={() => openModal(project)}
-              >
-                <div className="relative overflow-hidden">
-                  <div className="relative aspect-video w-full overflow-hidden">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                      decoding="async"
-                      style={{ contentVisibility: 'auto' }}
-                    />
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 md:group-hover:opacity-100 transition-opacity duration-200 flex items-end p-6">
-                    <div className="space-x-3">
-                      {(project.title === 'Motorverse' || project.title === 'Factory Driver Program' || project.title === 'Hopper & Wheatley Restorations') && project.link && (
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/80 dark:bg-gray-800/90 text-gray-800 dark:text-gray-200 hover:bg-white dark:hover:bg-gray-700 transition-all duration-200 hover:scale-110 shadow-md dark:shadow-gray-800/30"
-                          onClick={(e) => e.stopPropagation()}
-                          aria-label="View live demo"
-                        >
-                          <FiExternalLink className="w-5 h-5" />
-                        </a>
-                      )}
-                    </div>
+          {filteredProjects.map((project) => (
+            <div
+              key={project.title}
+              className="group relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-200 flex flex-col h-full cursor-pointer"
+              onClick={() => openModal(project)}
+            >
+              <div className="relative overflow-hidden">
+                <div className="relative aspect-video w-full overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    style={{ contentVisibility: 'auto' }}
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 md:group-hover:opacity-100 transition-opacity duration-200 flex items-end p-6">
+                  <div className="space-x-3">
+                    {(project.title === 'Motorverse' || project.title === 'Factory Driver Program' || project.title === 'Hopper & Wheatley Restorations') && project.link && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/80 dark:bg-gray-800/90 text-gray-800 dark:text-gray-200 hover:bg-white dark:hover:bg-gray-700 transition-all duration-200 hover:scale-110 shadow-md dark:shadow-gray-800/30"
+                        onClick={(e) => e.stopPropagation()}
+                        aria-label="View live demo"
+                      >
+                        <FiExternalLink className="w-5 h-5" />
+                      </a>
+                    )}
                   </div>
                 </div>
-                
-                <div className="p-6 flex-1 flex flex-col">
-                  <div className="flex-1">
-                    <div className="flex flex-col gap-2">
-                      <div className="space-y-2">
-                        <h3 className="text-xl font-bold text-gray-800 dark:text-white">
-                          {project.title}
-                        </h3>
-                        {project.date && (
-                          <div className="w-fit">
-                            <span className="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-3 py-1.5 rounded whitespace-nowrap">
-                              {project.date}
-                            </span>
-                          </div>
-                        )}
-                      </div>
-                      
-                      {project.tech && project.tech.length > 0 && (
-                        <div className="flex flex-wrap gap-2 pt-3 border-t border-gray-100 dark:border-gray-700">
-                          {project.tech.map((tech) => (
-                            <span 
-                              key={tech}
-                              className="text-xs px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-medium"
-                            >
-                              {tech}
-                            </span>
-                          ))}
+              </div>
+              
+              <div className="p-6 flex-1 flex flex-col">
+                <div className="flex-1">
+                  <div className="flex flex-col gap-2">
+                    <div className="space-y-2">
+                      <h3 className="text-xl font-bold text-gray-800 dark:text-white">
+                        {project.title}
+                      </h3>
+                      {project.date && (
+                        <div className="w-fit">
+                          <span className="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-3 py-1.5 rounded whitespace-nowrap">
+                            {project.date}
+                          </span>
                         </div>
                       )}
                     </div>
+                    
+                    {project.tech && project.tech.length > 0 && (
+                      <div className="flex flex-wrap gap-2 pt-3 border-t border-gray-100 dark:border-gray-700">
+                        {project.tech.map((tech) => (
+                          <span 
+                            key={tech}
+                            className="text-xs px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-medium"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

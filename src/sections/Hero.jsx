@@ -30,42 +30,11 @@ function Hero() {
       id="hero" 
       className="relative flex flex-col items-center justify-center min-h-[90vh] md:min-h-screen pt-20 pb-12 md:py-20 text-center overflow-hidden"
     >
-      {/* Dynamic gradient background with animation */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        {/* Animated gradient overlay */}
+      {/* Gradient background */}
+      <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50/70 via-purple-50/50 to-pink-50/70 dark:from-gray-900/90 dark:via-gray-800/90 dark:to-gray-900/90">
           <div className="absolute inset-0 bg-grid-pattern opacity-10 dark:opacity-5"></div>
         </div>
-        
-        {/* Animated blobs */}
-        <motion.div 
-          className="absolute -top-64 -left-64 w-[600px] h-[600px] bg-blue-300/40 dark:bg-blue-600/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"
-          animate={{
-            scale: [1, 1.1, 1],
-            x: [0, 40, 0],
-            y: [0, 30, 0],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div 
-          className="absolute -bottom-48 left-1/4 w-[500px] h-[500px] bg-purple-300/40 dark:bg-purple-600/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"
-          animate={{
-            scale: [1, 1.1, 1],
-            x: [0, -30, 0],
-            y: [0, -40, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "easeInOut"
-          }}
-        />
       </div>
       
       <div className="container px-4 mx-auto">

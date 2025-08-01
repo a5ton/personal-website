@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FiLinkedin, FiGithub, FiMail, FiMapPin, FiPhone, FiSend, FiTwitter } from 'react-icons/fi';
-import { motion } from 'framer-motion';
+
 import emailjs from '@emailjs/browser';
 
 const socialLinks = [
@@ -111,64 +111,22 @@ function Contact() {
           <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] dark:opacity-[0.02]"></div>
         </div>
         
-        {/* Animated elements */}
-        <div className="absolute inset-0">
-          <motion.div 
-            className="absolute top-1/4 -left-20 w-96 h-96 bg-blue-200/20 dark:bg-blue-600/10 rounded-full mix-blend-multiply filter blur-3xl"
-            animate={{
-              scale: [1, 1.1, 1],
-              x: [0, 30, 0],
-              y: [0, -20, 0],
-            }}
-            transition={{
-              duration: 15,
-              repeat: Infinity,
-              repeatType: "reverse",
-              ease: "easeInOut"
-            }}
-          />
-          <motion.div 
-            className="absolute bottom-1/4 -right-20 w-80 h-80 bg-purple-200/20 dark:bg-purple-600/10 rounded-full mix-blend-multiply filter blur-3xl"
-            animate={{
-              scale: [1, 1.1, 1],
-              x: [0, -20, 0],
-              y: [0, 20, 0],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              repeatType: "reverse",
-              ease: "easeInOut"
-            }}
-          />
-        </div>
+
       </div>
       <div className="absolute inset-0 -z-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"></div>
       
       <div className="container px-4 mx-auto">
-        <motion.div
-          className="text-left mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-        >
+        <div className="text-left mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
             Get In Touch
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400">
             Have a project in mind? Feel free to reach out. I'm always open to discussing new opportunities.
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid md:grid-cols-2 gap-12 items-start">
-          <motion.div
-            className="space-y-8"
-            initial={{ opacity: 0, x: 0 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px 0px -100px 0px" }}
-            transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-          >
+          <div className="space-y-8">
             <div className="space-y-6">
               <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
                 Based in the UK, I work with clients worldwide to create impactful digital experiences.
@@ -181,23 +139,18 @@ function Contact() {
             
             <div className="space-y-4">
               {contactInfo.map((item, index) => (
-                <motion.a
+                <a
                   key={index}
                   href={item.link}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`flex items-center p-4 rounded-xl transition-all ${item.bg} ${item.hover}`}
-                  whileHover={{ y: -3 }}
-                  initial={{ opacity: 0, y: 0 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px 0px -50px 0px" }}
-                  transition={{ delay: 0.1 * index, duration: 0.5 }}
                 >
                   <div className={`p-3 rounded-lg flex-shrink-0 ${item.color} ${item.iconBg}`} style={{ backdropFilter: 'blur(4px)' }}>
                     {item.icon}
                   </div>
                   <span className="ml-4 text-gray-700 dark:text-gray-300">{item.text}</span>
-                </motion.a>
+                </a>
               ))}
             </div>
             
@@ -205,37 +158,23 @@ function Contact() {
               <h4 className="text-lg font-medium text-gray-800 dark:text-white mb-4 text-center md:text-left">Follow Me</h4>
               <div className="flex gap-6 justify-center md:justify-start">
                 {socialLinks.map((link, index) => (
-                  <motion.a
+                  <a
                     key={index}
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`text-gray-600 dark:text-gray-400 transition-colors ${link.hoverColor}`}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true, margin: "-50px 0px -50px 0px" }}
-                    transition={{ 
-                      delay: 0.1 * index * 0.5, 
-                      duration: 0.5,
-                      ease: [0.25, 0.1, 0.25, 1]
-                    }}
+                    className={`text-gray-600 dark:text-gray-400 transition-colors hover:text-blue-600 dark:hover:text-blue-400`}
                     aria-label={link.label}
                   >
                     {link.icon}
-                  </motion.a>
+                  </a>
                 ))}
               </div>
             </div>
-          </motion.div>
+          </div>
           
-          <motion.div
-            className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8"
-            initial={{ opacity: 0, x: 0 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px 0px -100px 0px" }}
-            transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+          <div
+            className="bg-white dark:bg-gray-800/50 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700/50"
           >
             <h3 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">
               Send Me a Message
@@ -319,11 +258,12 @@ function Contact() {
                 ></textarea>
               </div>
               
-              <motion.button
+              <button
                 type="submit"
-                className="w-full flex items-center justify-center px-8 py-4 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 disabled:opacity-70"
                 disabled={isSubmitting}
-                whileTap={{ scale: 0.98 }}
+                className={`w-full md:w-auto px-8 py-4 rounded-xl font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-gray-900 transition-all duration-200 flex items-center justify-center space-x-2 ${
+                  isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
+                }`}
               >
                 {isSubmitting ? (
                   'Sending...'
@@ -333,9 +273,9 @@ function Contact() {
                     <FiSend className="ml-2" />
                   </>
                 )}
-              </motion.button>
+              </button>
             </form>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
