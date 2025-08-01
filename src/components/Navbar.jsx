@@ -125,11 +125,15 @@ function Navbar({ darkMode, setDarkMode }) {
               </motion.button>
             </div>
 
-            {/* Mobile menu button - Always shows burger icon */}
-            <div className="md:hidden flex items-center">
+            {/* Mobile menu button - Hidden when menu is open */}
+            <div className={`md:hidden flex items-center transition-opacity duration-200 ${mobileMenuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
               <button
-                onClick={() => setMobileMenuOpen(true)}
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none"
+                onClick={(e) => {
+                  setMobileMenuOpen(true);
+                  e.currentTarget.blur();
+                }}
+                onKeyDown={(e) => e.key === 'Escape' && e.currentTarget.blur()}
+                className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none focus:ring-0"
                 aria-expanded={mobileMenuOpen}
                 aria-label="Open main menu"
               >
