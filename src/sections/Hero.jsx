@@ -49,13 +49,13 @@ function Hero() {
           </div>
           
           <motion.h1
-            className="text-5xl sm:text-6xl md:text-7xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400"
+            className="text-5xl sm:text-6xl md:text-7xl font-extrabold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400"
           >
             Aston Ong
           </motion.h1>
           
           <motion.div 
-            className="flex items-center justify-center mb-8 h-12"
+            className="flex items-center justify-center mb-6 h-12"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.5 }}
