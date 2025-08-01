@@ -70,14 +70,16 @@ function ProjectModal({ project, isOpen, onClose }) {
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close button */}
-        <button 
-          onClick={onClose}
-          className="absolute top-4 right-4 p-2 rounded-full bg-black/70 hover:bg-black/90 text-white z-10 shadow-lg transition-colors"
-          aria-label="Close modal"
-        >
-          <FiX className="w-5 h-5" />
-        </button>
+        {/* Sticky close button container */}
+        <div className="sticky top-0 left-0 w-full h-0 z-20 pointer-events-none">
+          <button 
+            onClick={onClose}
+            className="absolute top-4 right-4 p-2 rounded-full bg-black/70 hover:bg-black/90 text-white shadow-lg transition-colors pointer-events-auto"
+            aria-label="Close modal"
+          >
+            <FiX className="w-5 h-5" />
+          </button>
+        </div>
 
         {/* Project images */}
         <div className="relative w-full bg-gray-100 dark:bg-gray-800 aspect-video overflow-hidden">
@@ -127,7 +129,7 @@ function ProjectModal({ project, isOpen, onClose }) {
         </div>
 
         <div className="p-6">
-          <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-6">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
             <div className="flex-1">
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
                 {project.title}
@@ -225,7 +227,7 @@ function Projects() {
   const filteredProjects = projects;
 
   return (
-    <section id="projects" className="relative pt-12 pb-16 md:py-24 overflow-hidden">
+    <section id="projects" className="relative pt-24 pb-16 md:pb-24 overflow-hidden">
       {/* Project Modal */}
       {isModalOpen && selectedProject && (
         <ProjectModal 
