@@ -244,7 +244,7 @@ function Projects() {
               <div className="p-6 flex-1 flex flex-col">
                 <div className="flex-1">
                   <div className="flex flex-col gap-2">
-                    <div className="space-y-2">
+                    <div className="flex items-center justify-between gap-3">
                       <h3 className="text-xl font-bold text-gray-800 dark:text-white">
                         {project.title}
                       </h3>
