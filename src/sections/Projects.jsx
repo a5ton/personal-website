@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { projects } from '../data/projects';
 import { FiGithub, FiExternalLink, FiX, FiArrowLeft, FiArrowRight } from 'react-icons/fi';
 
@@ -164,6 +164,14 @@ function ProjectModal({ project, isOpen, onClose }) {
 function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loadedImages, setLoadedImages] = useState({});
+
+  const handleImageLoad = (projectId) => {
+    setLoadedImages(prev => ({
+      ...prev,
+      [projectId]: true
+    }));
+  };
   
   const openModal = (project) => {
     setSelectedProject(project);
@@ -214,14 +222,32 @@ function Projects() {
             >
               <div className="relative overflow-hidden">
                 <div className="relative aspect-video w-full overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                    decoding="async"
-                    style={{ contentVisibility: 'auto' }}
-                  />
+                  <div className="relative w-full h-full overflow-hidden">
+                    <div 
+                      className={`absolute inset-0 bg-gray-200 dark:bg-gray-700 transition-opacity duration-500 ${loadedImages[project.title] ? 'opacity-0' : 'opacity-100'}`}
+                      style={{
+                        background: 'linear-gradient(110deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%)',
+                        backgroundSize: '200% 100%',
+                        animation: 'shimmer 1.5s infinite linear'
+                      }}
+                    />
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className={`w-full h-full object-cover transition-opacity duration-500 ${loadedImages[project.title] ? 'opacity-100' : 'opacity-0'}`}
+                      loading="eager"
+                      width="400"
+                      height="225"
+                      decoding="async"
+                      onLoad={() => handleImageLoad(project.title)}
+                    />
+                  </div>
+                  <style jsx global>{`
+                    @keyframes shimmer {
+                      0% { background-position: 200% 0; }
+                      100% { background-position: -200% 0; }
+                    }
+                  `}</style>
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 md:group-hover:opacity-100 transition-opacity duration-200 flex items-end p-6">
                   <div className="space-x-3">
