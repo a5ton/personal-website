@@ -134,7 +134,7 @@ function ProjectModal({ project, isOpen, onClose }) {
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
                 {project.title}
               </h2>
-              <div className="flex items-center gap-3 mt-2">
+              <div className="flex items-center gap-3 mt-2 mb-4">
                 <div className="bg-gray-100 dark:bg-gray-700 px-3 py-1.5 rounded flex items-center">
                   <span className="text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap">
                     {formatDate(project.date)}
